@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Squadivision",
+  "description": "Share pages with your squad mates",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+	"cookies",
+	"http://*/*",
+    "https://*/*"
+  ]
+}

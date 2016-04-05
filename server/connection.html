@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connection</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:3000');
+            socket.emit('agentRequest', { message: 'data', id: socket.io.engine.id });
+    </script>
+</head>
+<body>
+    baseplate
+</body>
+</html>
