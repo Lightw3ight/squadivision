@@ -12,9 +12,9 @@ class SocketService {
 
 	}
 
-	connect(query) {
+	connect(serverUrl, query) {
 		let _self = this;
-		_self.socket = io(_self.socketServerUrl, { query: query });
+		_self.socket = io(serverUrl, { query: query });
 
 		_self.socket.connect();
 		_self.socket.on('connect', _self.onConnect);

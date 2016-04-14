@@ -8,7 +8,7 @@ class BackgroundController {
 		// 	$scope.$apply();
 		// });
 
-		this.monitorId = "demo-background";
+		this.monitorId = "Alchemists TV";
 
 		this.connectToSocketServer();
 	}

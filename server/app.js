@@ -1,6 +1,6 @@
 // app.js
 var http = require('http');
-var https = require('https');
+//var https = require('https');
 var fs = require('fs');
 var feathers = require('feathers'),
 	app = module.exports.app = feathers();
@@ -15,10 +15,9 @@ var httpsSettings = {
 
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-//var todoService = require('./todos');
 
-//var server = https.createServer(app);
-var server = https.createServer(httpsSettings, app);
+//var server = https.createServer(httpsSettings, app);
+var server = http.createServer(app);
 
 var io = require('socket.io').listen(server);
 var services = require('./services.js')(io);

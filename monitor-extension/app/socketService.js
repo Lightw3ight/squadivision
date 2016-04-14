@@ -2,7 +2,7 @@ class SocketService {
 	constructor($rootScope, $timeout) {
 		var _self = this;
 		this.originalFunctionKey = '__socketCallBack';
-		this.socketServerUrl = 'https://tmlt101:3000';
+		this.socketServerUrl = 'http://tmlt101:3000';
 		//this.socketServerUrl = 'https://localhost:3000';
 		this.$timeout = $timeout;
 		this.$rootScope = $rootScope;

@@ -1,12 +1,36 @@
 class PopupController {
-	constructor($scope, socketService) {
+	constructor($scope, socketService, localStorageService) {
+		this.localStorageService = localStorageService;
 		this.socketService = socketService;
-		socketService.connect();
+		this.config = localStorageService.get('squadivision-client-config') || {};
+		
+		if (this.config.serverUrl){
+			this.connectToServer();
+		} else {
+			this.showConfig();
+		}
+		
 		this.getCurrentTabUrl(url => {
 			this.currentUrl = url;
 			$scope.$apply();
 		});
 
+	}
+	
+	showConfig(){
+		this.configClone = angular.copy(this.config);
+		this.configOpen = true;
+	}
+	
+	saveConfig(){
+		this.config = this.configClone;
+		this.localStorageService.set('squadivision-client-config', this.config);
+		this.connectToServer();
+		this.configOpen = false;
+	}
+	
+	connectToServer(){
+		this.socketService.connect(this.config.serverUrl);
 		this.loadMonitors();
 	}
 
