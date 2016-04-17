@@ -2,7 +2,7 @@ class SocketService {
 	constructor($rootScope, $timeout) {
 		var _self = this;
 		this.originalFunctionKey = '__socketCallBack';
-		this.socketServerUrl = 'http://tmlt101:3000';
+		//this.socketServerUrl = 'http://tmlt101:3000';
 		//this.socketServerUrl = 'https://localhost:3000';
 		this.$timeout = $timeout;
 		this.$rootScope = $rootScope;
@@ -12,9 +12,14 @@ class SocketService {
 
 	}
 
-	connect(query) {
+	connect(serverUrl, query) {
 		let _self = this;
-		_self.socket = io(_self.socketServerUrl, { query: query });
+		
+		if (_self.socket){
+			_self.socket.disconnect();
+		}
+		
+		_self.socket = io(serverUrl, { query: query });
 
 		_self.socket.connect();
 		_self.socket.on('connect', _self.onConnect);
@@ -57,8 +62,8 @@ class SocketService {
 	}
 
 	emit(eventName, data, callback) {
-		this.socket.emit(eventName, data, (a, b, c) => {
-			var a = b;
+		this.socket.emit(eventName, data, () => {
+			callback();
 		});
 	}
 }

@@ -57,8 +57,8 @@ class SocketService {
 	}
 
 	emit(eventName, data, callback) {
-		this.socket.emit(eventName, data, (a, b, c) => {
-			var a = b;
+		this.socket.emit(eventName, data, () => {
+			callback();
 		});
 	}
 }

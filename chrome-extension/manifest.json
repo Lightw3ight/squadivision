@@ -3,7 +3,7 @@
 
   "name": "Squadivision",
   "description": "Share pages with your squad mates, requires a squadvision socket.io server and a squadvision monitor",
-  "version": "0.0.0.1",
+  "version": "0.0.0.2",
 
   "browser_action": {
     "default_icon": "icon.png",

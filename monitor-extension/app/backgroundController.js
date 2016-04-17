@@ -1,28 +1,50 @@
 class BackgroundController {
-	constructor($scope, socketService, $sce) {
+	constructor($scope, socketService, $sce, configService) {
 		this.$sce = $sce;
 		this.socketService = socketService;
-		socketService.connect();
-		// this.getCurrentTabUrl(url => {
-		// 	this.currentUrl = url;
-		// 	$scope.$apply();
-		// });
+		this.configService = configService;
+		this.config = configService.getConfig();
 
-		this.monitorId = "Alchemists TV";
+		if (this.config.monitorName && this.config.serverUrl) {
+			this.connectToSocketServer();
+		}
+		
+		this.getTab(tab => {
+			var thing = tab;
+		})
 
-		this.connectToSocketServer();
+		chrome.extension.onConnect.addListener(port => {
+			console.log("Connected to popup");
+			port.onMessage.addListener(config => {
+				this.config = config;
+				if (this.config.monitorName && this.config.serverUrl) {
+					console.log("Config updated");
+					this.connectToSocketServer();
+				}
+				//port.postMessage("Hi Popup.js");
+			});
+		});
 	}
 
 	connectToSocketServer() {
 		console.log('conecting');
-		this.socketService.connect({ monitorId: `${this.monitorId}` });
+		this.socketService.connect(this.config.serverUrl, { monitorId: `${this.config.monitorName}` });
 		this.socketService.on('url', (data) => { this.onEventReceived(data); });
 	}
 
 	onEventReceived(data) {
-		this.setNewUrl(data.url, data.cookies);
-		//this.currentUrl = this.$sce.trustAsResourceUrl(data.url);
-		//console.log('blurgle event: ' + JSON.stringify(data));
+		if (data.timeout) {
+			this.getTab(tab => {
+				var oldUrl = tab.url;
+				this.setNewUrl(data.url, data.cookies);
+				
+				window.setTimeout(() =>{
+					this.setNewUrl(oldUrl, []);
+				}, data.timeout * 1000);
+			})
+		} else {
+			this.setNewUrl(data.url, data.cookies);
+		}
 	}
 
 	setNewUrl(url, cookies) {
@@ -64,9 +86,28 @@ class BackgroundController {
 		// 	}
 		// }
 
+		this.getTab(tab => {
+			chrome.tabs.update(tab.id, { url: url });
+		})
+
+		// chrome.tabs.query(queryInfo, (tabs) => {
+		// 	var tab = tabs[0];
+		// 	chrome.tabs.update(tab.id, { url: url });
+		// 	//chrome.tabs.onUpdated.addListener(onLoad);
+		// });
+	}
+
+	getTab(callback) {
+		var queryInfo = {
+			active: true,
+			windowType: "normal",
+			//currentWindow: true,
+			lastFocusedWindow: true
+		};
+
 		chrome.tabs.query(queryInfo, (tabs) => {
 			var tab = tabs[0];
-			chrome.tabs.update(tab.id, { url: url });
+			callback(tab);
 			//chrome.tabs.onUpdated.addListener(onLoad);
 		});
 	}

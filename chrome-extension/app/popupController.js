@@ -44,13 +44,12 @@ class PopupController {
 		});
 	}
 
-	sendToMonitor(url, monitorId) {
+	sendToMonitor(url, monitorId, timeout) {
 		chrome.cookies.getAll({ url: url }, (bikkies) => {
-			this.socketService.emit('url', { url: url, monitorId: monitorId, cookies: bikkies }, (a, b, c) => {
+			this.socketService.emit('url', { url: url, monitorId: monitorId, cookies: bikkies, timeout: timeout }, (a, b, c) => {
 				window.close();
 			});
 		});
-
 	}
 
 	getCurrentTabUrl(callback) {
