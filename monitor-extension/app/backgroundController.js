@@ -30,6 +30,14 @@ class BackgroundController {
 		console.log('conecting');
 		this.socketService.connect(this.config.serverUrl, { monitorId: `${this.config.monitorName}` });
 		this.socketService.on('url', (data) => { this.onEventReceived(data); });
+		this.socketService.on('scroll', (data) => { this.onScrollReceived(data); });
+	}
+	
+	onScrollReceived(data){
+		console.log('got scroll event');
+		this.getTab(tab => {
+			chrome.tabs.executeScript(tab.id, {code: `window.scrollBy(0, ${data.direction} * 120);`});
+		})
 	}
 
 	onEventReceived(data) {

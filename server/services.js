@@ -16,10 +16,19 @@ module.exports = function(io) {
 	function initialiseClient(socket) {
 		clients.push(socket);
 		console.log(`client connected`);
+		
+		socket.on('scroll', data =>{
+			var targetMonitor = monitors.find(m => m.request._query.monitorId == data.monitorId);
+			
+			if (targetMonitor){
+				//console.log(`sending ${data.url} to ${data.monitorId}`)
+				targetMonitor.emit('scroll', data);
+			}
+		});
 
 		socket.on('url', (data, fn) => {
 			var targetMonitor = monitors.find(m => m.request._query.monitorId == data.monitorId);
-			console.log(monitors[0].request._query.monitorId);
+			//console.log(monitors[0].request._query.monitorId);
 			if (targetMonitor){
 				console.log(`sending ${data.url} to ${data.monitorId}`)
 				targetMonitor.emit('url', data);
@@ -28,9 +37,6 @@ module.exports = function(io) {
 			if (fn){
 				fn();
 			}
-			// monitors.forEach(mon => {
-			// 	mon.emit('url', data);
-			// })
 		});
 		
 		socket.on('get-monitors', () =>{

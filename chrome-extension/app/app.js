@@ -1,3 +1,3 @@
 angular.module('app', [
-	'LocalStorageModule'
+	'ui.bootstrap'
 ]);

@@ -10,6 +10,17 @@
 	"background": {
 		"page": "background.html"
 	},
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*/*"
+			],
+			"js": [
+				"content_script.js"
+			],
+			"run_at": "document_end"
+		}
+	],
 	"permissions": [
 		"activeTab",
 		"cookies",
