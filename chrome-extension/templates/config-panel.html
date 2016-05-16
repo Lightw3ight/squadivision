@@ -1,0 +1,11 @@
+<div>
+	<h3 style="margin-top: 0;">Config</h3>
+	<div class="form-group">
+		<label>Server</label>
+		<input type="text" ng-model="$ctrl.settings.serverUrl" class="form-control">
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary" ng-click="$ctrl.save()">Save</button>
+		<button class="btn btn-default" ng-show="$ctrl.canClose()" ng-click="$ctrl.close()">cancel</button>
+	</div>
+</div>

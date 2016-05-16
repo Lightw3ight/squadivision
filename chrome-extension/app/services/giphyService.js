@@ -8,7 +8,7 @@
 			var url = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=${search}&rating=pg`;
 
 			return this.$http.get(url).then((result => {
-				return result.data.data.url + '/fullscreen';
+				return result.data.data.url ? result.data.data.url + '/fullscreen' : null;
 			}));
 
 			// 		request('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=' + search + '&rating=pg', function (error, response, body) {

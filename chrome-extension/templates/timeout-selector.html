@@ -1,0 +1,13 @@
+<label>Timeout:</label>
+<button class="btn btn-link btn-sm" uib-popover-template="'timeout-list.html'" popover-trigger="focus">{{$ctrl.selectedTimeout || 'Auto'}}</button>
+
+<script type="text/ng-template" id="timeout-list.html">
+	<div class="popup-list">
+		<div>
+			<button type="button" class="btn btn-default btn-block btn-sm" ng-click="$ctrl.changeTimeout(null)" title="Auto timeout means that any giphys will only display for 15s">Auto</button>
+		</div>
+		<div ng-repeat="item in $ctrl.timeouts">
+			<button type="button" class="btn btn-default btn-block btn-sm" ng-click="$ctrl.changeTimeout(item)">{{item}}s</button>
+		</div>
+	</div>
+</script>	

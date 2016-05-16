@@ -1,0 +1,10 @@
+<div class="broadcast-bar">
+	<form ng-submit="barController.broadcast(barController.broadcastValue, barController.timeout)" class="form-inline">
+		<div class="input-group">
+      		<input type="text" ng-model="barController.broadcastValue" class="form-control input-sm" placeholder="{{barController.currentUrl}}" autofocus>
+      		<span class="input-group-btn">
+        		<button type="submit" class="btn btn-primary btn-sm">Send</button>
+      		</span>
+    	</div>
+	</form>
+</div>

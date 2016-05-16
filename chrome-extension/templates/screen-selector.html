@@ -1,0 +1,10 @@
+<label>Screen:</label>
+<button class="btn btn-link btn-sm" uib-popover-template="'myPopoverTemplate.html'" popover-trigger="focus">{{$ctrl.selectedScreen}}</button>
+
+<script type="text/ng-template" id="myPopoverTemplate.html">
+	<div class="popup-list">
+		<div ng-repeat="item in $ctrl.screens | orderBy: 'toString()'">
+			<button class="btn btn-default btn-block btn-sm" type="button" ng-click="$ctrl.changeScreen(item)">{{item}}</button>
+		</div>
+	</div>
+</script>	

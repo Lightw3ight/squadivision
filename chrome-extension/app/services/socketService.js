@@ -15,6 +15,10 @@
 
 		connect(serverUrl, query) {
 			let _self = this;
+
+			if (_self.socket){
+				return;
+			}
 			_self.socket = io(serverUrl, { query: query });
 
 			_self.socket.connect();
