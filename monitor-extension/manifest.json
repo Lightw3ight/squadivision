@@ -5,10 +5,10 @@
 	"version": "0.0.0.1",
 	"browser_action": {
 		"default_icon": "icon.png",
-		"default_popup": "popup.html"
+		"default_popup": "popup-app.html"
 	},
 	"background": {
-		"page": "background.html"
+		"page": "background-app.html"
 	},
 	"content_scripts": [
 		{

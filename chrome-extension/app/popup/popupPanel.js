@@ -33,18 +33,7 @@
 
 		connectToServer() {
 			this.socketService.connect(this.config.serverUrl);
-			//this.loadMonitors();
 		}
-
-		// loadMonitors() {
-		// 	this.socketService.on('monitor-list', monitors => {
-		// 		this.monitors = monitors;
-		// 		this.selectedMonitor = this.monitors[0];
-		// 	});
-		// 	this.socketService.emit('get-monitors', {}, (a, b, c) => {
-		// 		//this.debug = JSON.stringify(a);
-		// 	});
-		// }
 
 		sendToMonitor(url, monitorId, timeout) {
 			chrome.cookies.getAll({ url: url }, (bikkies) => {
