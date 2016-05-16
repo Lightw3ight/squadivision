@@ -1,36 +1,33 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+
 <html>
 
 <head>
 	<title>Squadivision</title>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/popup.css">
 
 	<script src="vendor/angular.min.js"></script>
+	<script src="vendor/angular-route.min.js"></script>
 	<script src="vendor/ui-bootstrap-tpls-1.3.2.min.js"></script>
 	<script src="vendor/socket.io.js"></script>
+	
 	<script src="app/app.js"></script>
 	<script src="app/services/settingsService.js"></script>
 	<script src="app/services/socketService.js"></script>
 	<script src="app/services/giphyService.js"></script>
 	<script src="app/services/urlTransformService.js"></script>
-	<script src="app/broadcastBar.js"></script>
-	<script src="app/scrollPad.js"></script>
-	<script src="app/popupController.js"></script>
-	<script src="app/configPanel.js"></script>
-	<script src="app/screenSelector.js"></script>
-	<script src="app/timeoutSelector.js"></script>
-
-	<link rel="stylesheet" href="/css/popup.css">
+	<script src="app/config/configPanel.js"></script>
+	<script src="app/popup/broadcastBar.js"></script>
+	<script src="app/popup/scrollPad.js"></script>
+	<script src="app/popup/popupPanel.js"></script>
+	<script src="app/popup/screenSelector.js"></script>
+	<script src="app/popup/timeoutSelector.js"></script>
 </head>
 
 <body ng-app="app">
-	<popup></popup>
+	<div ng-view></div>
 </body>
 
 </html>

@@ -1,11 +1,16 @@
 <div>
-	<h3 style="margin-top: 0;">Config</h3>
-	<div class="form-group">
-		<label>Server</label>
-		<input type="text" ng-model="$ctrl.settings.serverUrl" class="form-control">
+	<div class="modal-header">
+		<h4 class="modal-title">Config</h4> </div>
+	<div class="modal-body">
+		<form name="configForm">
+			<div class="form-group" ng-class="{ 'has-error': configForm.serverUrl.$invalid && configForm.serverUrl.$dirty}">
+				<label class="control-label">Server Url</label>
+				<input type="text" name="serverUrl" ng-model="$ctrl.settings.serverUrl" class="form-control" required>
+			</div>
+		</form>
 	</div>
-	<div class="form-group">
-		<button class="btn btn-primary" ng-click="$ctrl.save()">Save</button>
-		<button class="btn btn-default" ng-show="$ctrl.canClose()" ng-click="$ctrl.close()">cancel</button>
+	<div class="modal-footer">
+		<a class="btn btn-default" href="#/" ng-click="$ctrl.close()" ng-show="$ctrl.canClose()">cancel</a>
+		<button type="button" ng-click="$ctrl.save()" class="btn btn-primary" ng-disabled="configForm.$invalid">Save</button>
 	</div>
 </div>

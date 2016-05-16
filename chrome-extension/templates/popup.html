@@ -1,7 +1,5 @@
 <div>
-	<config-panel ng-show="$ctrl.configOpen" on-close="$ctrl.configOpen = false" on-settings-saved="$ctrl.updateSettings(settings)"></config-panel>
-	
-	<div class="popup-container" ng-show="!$ctrl.configOpen">
+	<div class="popup-container">
 		<broadcast-bar on-broadcast="$ctrl.broadcast(value, $ctrl.timeout, $ctrl.selectedMonitor)"></broadcast-bar>
 		
 		<scroll-pad on-scroll="$ctrl.scrollMonitor(direction)"></scroll-pad>
@@ -9,7 +7,7 @@
 		<div class="settings-bar">
 			<screen-selector on-screen-changed="$ctrl.selectedMonitor = screen" selected-screen="$ctrl.selectedMonitor"></screen-selector>
 			<timeout-selector on-timeout-changed="$ctrl.timeout = timeout" selected-timeout="$ctrl.timeout"></timeout-selector>
-			<button ng-click="$ctrl.showConfig()" class="btn btn-link btn-config pull-right"><i class="fa fa-cog" aria-hidden="true"></i></button>
+			<a href="#/config" class="btn btn-link btn-config pull-right"><i class="fa fa-cog" aria-hidden="true"></i></a>
 		</div>
 	</div>
 </div>

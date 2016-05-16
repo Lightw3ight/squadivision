@@ -19,10 +19,6 @@ class PopupController {
 			this.backgroundPort.postMessage(angular.copy(this.config));
 			window.close();
 		}, 300);
-		// port.onMessage.addListener(function (msg) {
-		// 	console.log("message recieved" + msg);
-		// });
-
 	}
 }
 

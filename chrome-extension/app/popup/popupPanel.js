@@ -1,6 +1,7 @@
 (() => {
-	class PopupController {
-		constructor($scope, socketService, settingsService) {
+	class PopupPanel {
+		constructor($scope, $location, socketService, settingsService) {
+			this.$location = $location;
 			this.settingsService = settingsService;
 			this.socketService = socketService;
 			this.config = settingsService.get() || {};
@@ -8,7 +9,7 @@
 			if (this.config.serverUrl) {
 				this.connectToServer();
 			} else {
-				this.showConfig();
+				this.$location.path('/config');
 			}
 		}
 
@@ -54,12 +55,12 @@
 		}
 	}
 	
-	angular.module('app').component('popup', {
+	angular.module('app').component('popupPanel', {
 		templateUrl: '/templates/popup.html',
 		controller: factory
 	});
 
-	function factory($scope, socketService, settingsService) {
-		return new PopupController($scope, socketService, settingsService);
+	function factory($scope, $location, socketService, settingsService) {
+		return new PopupPanel($scope, $location, socketService, settingsService);
 	}
 })();

@@ -1,3 +1,11 @@
 angular.module('app', [
-	'ui.bootstrap'
-]);
+	'ui.bootstrap',
+	'ngRoute'
+]).config(function($routeProvider) {
+  $routeProvider.when('/', {
+    template: '<popup-panel></popup-panel>'
+  })
+  .when('/config', {
+	  template: '<config-panel></config-panel>'
+  });
+});

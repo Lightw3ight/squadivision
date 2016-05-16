@@ -12,6 +12,10 @@
 
 
 		}
+		
+		disconnect(){
+			this.socket.disconnect();
+		}
 
 		connect(serverUrl, query) {
 			let _self = this;
@@ -49,6 +53,10 @@
 
 		onDisconnect() {
 			console.log('socket: disconnected');
+			this.socket.off('connect')
+			this.socket.off('disconnect')
+			this.socket.off('error')
+			this.socket = null;
 		}
 
 		//on<T>(eventName: string, callback: ((data: T) => void));

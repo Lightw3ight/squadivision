@@ -1,19 +1,16 @@
 (() => {
 	class ConfigPanel {
-		constructor(settingsService) {
+		constructor($location, settingsService, socketService) {
+			this.$location = $location;
+			this.socketService = socketService;
 			this.settingsService = settingsService;
 			this.loadSettings();
 		}
 		
 		save(){
 			this.settingsService.set(this.settings);
-			this.onSettingsSaved({settings: this.settings});
-			this.close();
-		}
-		
-		close(){
-			this.loadSettings();
-			this.onClose();
+			this.socketService.disconnect();
+			this.$location.path('/');
 		}
 		
 		canClose(){
@@ -28,14 +25,10 @@
 
 	angular.module('app').component('configPanel', {
 		templateUrl: '/templates/config-panel.html',
-		controller: factory,
-		bindings: {
-			onSettingsSaved: '&',
-			onClose: '&',
-		}
+		controller: factory
 	});
 
-	function factory(settingsService) {
-		return new ConfigPanel(settingsService);
+	function factory($location, settingsService, socketService) {
+		return new ConfigPanel($location, settingsService, socketService);
 	}
 })();
