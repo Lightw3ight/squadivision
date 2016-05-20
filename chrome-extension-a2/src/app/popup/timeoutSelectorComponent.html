@@ -1,0 +1,11 @@
+<label>Timeout:</label>
+
+<span dropdown class="dropup">
+	<button class="btn btn-link btn-sm" dropdownToggle>{{selectedTimeout || 'Auto'}}</button>
+	<ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+		<li><a class="dropdown-item" href="javascript:void(0);" (click)="changeTimeout(null)" title="Auto timeout means that any giphys will only display for 15s">Auto</a></li>
+	  	<li *ngFor="let item of timeouts">
+			<a class="dropdown-item" href="javascript:void(0);" (click)="changeTimeout(item)">{{item}}s</a>
+		</li>
+	</ul>
+</span>

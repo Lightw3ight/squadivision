@@ -1,0 +1,13 @@
+<div>
+	<div class="popup-container">
+		<broadcast-bar (broadcast)="broadcast($event, timeout, selectedMonitor)"></broadcast-bar>
+		
+		<scroll-pad (scrollScreen)="scrollMonitor($event)"></scroll-pad>
+
+		<div class="settings-bar">
+			<screen-selector (changed)="selectedMonitor = $event" [selectedScreen]="selectedMonitor"></screen-selector>
+			<timeout-selector (changed)="timeout = $event" [selectedTimeout]="timeout"></timeout-selector>
+			<a [routerLink]="['/config']" class="btn btn-link btn-config pull-right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+		</div>
+	</div>
+</div>

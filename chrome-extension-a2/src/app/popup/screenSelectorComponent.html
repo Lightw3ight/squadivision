@@ -1,0 +1,10 @@
+<label>Screen:</label>
+
+<span dropdown class="dropup">
+	<button class="btn btn-link btn-sm" dropdownToggle>{{selectedScreen || 'no screen selected'}}</button>
+	<ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+	  	<li *ngFor="let screen of screens">
+			<a class="dropdown-item" href="javascript:void(0);" (click)="changeScreen(screen)">{{screen}}</a>
+		</li>
+	</ul>
+</span>

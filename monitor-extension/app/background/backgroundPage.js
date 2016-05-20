@@ -4,7 +4,9 @@
 			this.$sce = $sce;
 			this.socketService = socketService;
 			this.settingsService = settingsService;
-			this.config = settingsService.get();
+			this.config = settingsService.get() || {};
+			this.timeout = null;
+			this.previousUrl = null;
 
 			if (this.config.monitorName && this.config.serverUrl) {
 				this.connectToSocketServer();
@@ -22,7 +24,6 @@
 						console.log("Config updated");
 						this.connectToSocketServer();
 					}
-					//port.postMessage("Hi Popup.js");
 				});
 			});
 		}
@@ -44,11 +45,18 @@
 		onEventReceived(data) {
 			if (data.timeout) {
 				this.getTab(tab => {
-					var oldUrl = tab.url;
+					if (this.timeout) {
+						window.clearTimeout(this.timeout);
+					} else {
+						this.previousUrl = tab.url
+					}
+
 					this.setNewUrl(data.url, data.cookies);
 
-					window.setTimeout(() => {
-						this.setNewUrl(oldUrl, []);
+					this.timeout = window.setTimeout(() => {
+						this.setNewUrl(this.previousUrl, []);
+						this.previousUrl = null;
+						this.timeout = null;
 					}, data.timeout * 1000);
 				})
 			} else {
@@ -125,7 +133,7 @@
 	function factory($scope, socketService, $sce, settingsService) {
 		return new BackgroundController($scope, socketService, $sce, settingsService);
 	}
-	
+
 	angular.module('app').component('backgroundPage', {
 		template: '<div>Squadivision: Monitor background page.</div>',
 		controller: factory

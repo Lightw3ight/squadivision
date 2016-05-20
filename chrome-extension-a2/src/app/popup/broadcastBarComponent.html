@@ -1,0 +1,10 @@
+<div class="broadcast-bar">
+	<form (submit)="sendUrl(broadcastValue)" class="form-inline">
+		<div class="input-group">
+      		<input type="text" [(ngModel)]="broadcastValue" class="form-control input-sm" [attr.placeholder]="currentUrl" autofocus>
+      		<span class="input-group-btn">
+        		<button type="submit" class="btn btn-primary btn-sm">Send</button>
+      		</span>
+    	</div>
+	</form>
+</div>

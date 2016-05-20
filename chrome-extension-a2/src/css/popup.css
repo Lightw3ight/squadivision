@@ -1,0 +1,75 @@
+body {
+	
+	width: 500px;
+}
+
+.tab-pane {
+	margin-top: 10px;
+}
+
+.nav>li>a {
+	padding: 4px 15px;
+}
+
+.settings-bar {
+	background-color: #F9F9F9;
+	border-top: 1px solid #DDD;
+	margin: 0;
+	padding: 5px 0 5px 10px;
+}
+
+.scroll-pad {
+	width: 20%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 43px;
+	text-align: center;
+	background-color: #EEE;
+}
+
+.scroll-pad span {
+	display: inline-block;
+	padding-top: 50%;
+	margin-top: -16px;
+	color: #BBB;
+}
+
+.broadcast-bar {
+	width: 80%;
+	padding: 30px 15px 30px 15px;
+}
+
+screen-selector {
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.settings-bar label {
+	display: inline-block;
+}
+
+.settings-bar .btn-link {
+	display: inline-block;
+	padding: 5px 2px;
+	margin-right: 5px;
+}
+
+.settings-bar .input-timeout {
+	width: 100px;
+}
+
+.popup-list {
+	max-height: 70px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin: -5px -10px;
+}
+
+.popup-list .btn {
+	border: none;
+	text-align: left;
+	border-radius: 0;
+	padding: 3px 10px;
+	padding-right: 30px;
+}
