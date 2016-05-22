@@ -1,6 +1,5 @@
 System.config({
   baseURL: "/",
-  production: true,
   defaultJSExtensions: true,
   transpiler: "typescript",
   typescriptOptions: {
@@ -18,6 +17,7 @@ System.config({
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
+  production: true,
 
   packages: {
     "app": {
@@ -30,17 +30,48 @@ System.config({
         }
       }
     },
-    'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { defaultExtension: 'js' },
-    "@angular/common": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/compiler": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/core": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/http": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/platform-browser": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/platform-browser-dynamic": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/router-deprecated": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/testing": { main: 'index.js', defaultExtension: 'js' },
-    "@angular/upgrade": { main: 'index.js', defaultExtension: 'js' }
+    "rxjs": {
+      "defaultExtension": "js"
+    },
+    "angular2-in-memory-web-api": {
+      "defaultExtension": "js"
+    },
+    "@angular/common": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/compiler": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/core": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/http": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/platform-browser": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/platform-browser-dynamic": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/router-deprecated": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/testing": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    },
+    "@angular/upgrade": {
+      "main": "index.js",
+      "defaultExtension": "js"
+    }
   },
 
   map: {
@@ -57,7 +88,7 @@ System.config({
     "es6-shim": "github:es-shims/es6-shim@0.35.1",
     "ng2-bootstrap": "npm:ng2-bootstrap@1.0.16",
     "reflect-metadata": "npm:reflect-metadata@0.1.3",
-    "rxjs": "npm:rxjs@5.0.0-beta.7",
+    "rxjs": "npm:rxjs@5.0.0-beta.6",
     "socket.io": "npm:socket.io@1.4.6",
     "socket.io-client": "npm:socket.io-client@1.4.6",
     "ts": "github:frankwallis/plugin-typescript@4.0.16",
@@ -544,11 +575,6 @@ System.config({
     "npm:rxjs@5.0.0-beta.6": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:rxjs@5.0.0-beta.7": {
-      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "symbol-observable": "npm:symbol-observable@0.2.4"
     },
     "npm:sha.js@2.4.5": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",

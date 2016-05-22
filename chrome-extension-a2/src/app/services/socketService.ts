@@ -11,10 +11,14 @@ export class SocketService {
 
 	disconnect() {
 		this.socket.disconnect();
+		this.socket.off('connect')
+		this.socket.off('disconnect')
+		this.socket.off('error')
+		this.socket = null;
 	}
 
 	connect(serverUrl, query?) {
-		if (this.socket) {
+		if (this.socket && this.socket.connected) {
 			return;
 		}
 		this.socket = io(serverUrl, { query: query });
@@ -34,20 +38,16 @@ export class SocketService {
 		};
 	}
 
-	onError() {
+	onError = () => {
 		console.log('socket: error');
 	}
 
-	onConnect() {
+	onConnect = () => {
 		console.log('socket: connected');
 	}
 
-	onDisconnect() {
+	onDisconnect = () => {
 		console.log('socket: disconnected');
-		this.socket.off('connect')
-		this.socket.off('disconnect')
-		this.socket.off('error')
-		this.socket = null;
 	}
 
 	on<T>(eventName): Promise<T> {

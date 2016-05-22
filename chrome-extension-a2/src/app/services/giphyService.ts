@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GiphyService {
@@ -10,7 +11,9 @@ export class GiphyService {
 	getRandom(search) : Promise<string> {
 		var url = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=${search}&rating=pg`;
 
-		return this._http.get(url)
+		var result =this._http.get(url);
+		debugger; 
+		return result
 			.map(response => {
 				return response.json().data.url ? response.json().data.url + '/fullscreen' : null;
 			})

@@ -2,15 +2,15 @@
 	<div class="modal-header">
 		<h4 class="modal-title">Config</h4> </div>
 	<div class="modal-body">
-		<form name="configForm">
-			<div class="form-group">
+		<form #configForm="ngForm">
+			<div class="form-group" [ngClass]="{'has-error': !(serverUrl.valid || serverUrl.pristine)}">
 				<label class="control-label">Server Url</label>
-				<input type="text" name="serverUrl" [(ngModel)]="settings.serverUrl" class="form-control" required>
+				<input type="text" ngControl="serverUrl" #serverUrl="ngForm" [(ngModel)]="settings.serverUrl" class="form-control" required>
 			</div>
 		</form>
 	</div>
 	<div class="modal-footer">
 		<a class="btn btn-default" [routerLink]="['/']" *ngIf="canClose()">cancel</a>
-		<button type="button" (click)="save()" class="btn btn-primary">Save</button>
+		<button type="button" (click)="configForm.valid && save()" class="btn btn-primary">Save</button>
 	</div>
 </div>

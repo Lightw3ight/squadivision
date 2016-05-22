@@ -18,7 +18,7 @@ export class UrlTransformService {
 	getUrl(search): Promise<IUrlResult> {
 		if (this.isYouTube(search)) {
 			var matches = this.youTubeRegex.exec(search);
-			return Promise.resolve<IUrlResult>({ type: 'url', url: `https://www.youtube.com/embed/${matches[1]}?rel=0&autoplay=1` });
+			return Promise.resolve<IUrlResult>({ type: 'youtube', url: `https://www.youtube.com/embed/${matches[1]}?rel=0&autoplay=1` });
 		}
 		
 		if (this.isUrl(search)) {
@@ -30,7 +30,7 @@ export class UrlTransformService {
 		}
 
 		return this.giphyService.getRandom(search).then(url => {
-			return Promise.resolve<IUrlResult>({ type: 'url', url: url });
+			return Promise.resolve<IUrlResult>({ type: 'giphy', url: url });
 		});
 	}
 
