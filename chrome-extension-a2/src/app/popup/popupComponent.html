@@ -8,6 +8,7 @@
 			<screen-selector (changed)="selectedMonitor = $event" [selectedScreen]="selectedMonitor"></screen-selector>
 			<timeout-selector (changed)="timeout = $event" [selectedTimeout]="timeout"></timeout-selector>
 			<a [routerLink]="['/config']" class="btn btn-link btn-config pull-right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+			<button (click)="openVideoPage()" class="btn btn-link btn-config pull-right"><i class="fa fa-video-camera" aria-hidden="true"></i></button>
 		</div>
 	</div>
 </div>

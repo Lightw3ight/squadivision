@@ -44,6 +44,10 @@ export class PopupComponent {
 		}
 	}
 	
+	openVideoPage(){
+		chrome.tabs.create({ url: '/app/video/index.html' });
+	}
+	
 	broadcast(value, timeout: number, monitorId: string) {
 		timeout = timeout || (value.type === 'giphy' ? 15 : null);
 		this.sendToMonitor(value.url, monitorId, timeout);
