@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, Routes, Router, ROUTER_PROVIDERS } from '@angular/router';
+import {ROUTER_DIRECTIVES, Routes, Router} from '@angular/router';
 import {HTTP_PROVIDERS} from '@angular/http';
-
 
 import {PopupComponent} from './popup/popupComponent';
 import {ConfigComponent} from './config/configComponent';
+import {VideoConferenceComponent} from './video/videoConferenceComponent';
 
 import {SettingsService} from './services/settingsService';
 import {GiphyService} from './services/giphyService';
@@ -15,8 +15,7 @@ import {SocketService} from './services/socketService';
 	selector: 'app-component',
 	templateUrl: '/app/appComponent.html',
 	directives: [ROUTER_DIRECTIVES],
-	providers: [
-		ROUTER_PROVIDERS,
+	providers: [		
 		SettingsService,
 		SocketService,
 		GiphyService,
@@ -26,14 +25,15 @@ import {SocketService} from './services/socketService';
 })
 @Routes([
 	{path: '/', component: PopupComponent},
-	{path: '/config', component: ConfigComponent}
+    {path: '/config', component: ConfigComponent},
+    {path: '/video', component: VideoConferenceComponent},
 ])
 export class AppComponent{
 	constructor(private router: Router){
-		
+
 	}
-	
+
 	ngOnInit() {
-		//this.router.navigate(['/popup']);
+
 	}
 }

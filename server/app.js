@@ -1,9 +1,11 @@
 // app.js
+var config = require('./config.js');
 var http = require('http');
 //var https = require('https');
 var fs = require('fs');
 var feathers = require('feathers'),
 	app = module.exports.app = feathers();
+var signallingSockets = require('signal-master/sockets');
 
 var httpsSettings = {
     key: fs.readFileSync(__dirname + '/SSLConfig/server.key'),
@@ -21,6 +23,7 @@ var server = http.createServer(app);
 
 var io = require('socket.io').listen(server);
 var services = require('./services.js')(io);
+signallingSockets(io, config);
 
 app.configure(feathers.rest());
 app.use(morgan('dev'));
@@ -31,6 +34,6 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/connection.html');
 });
 
-server.listen(3000, function() {
-    console.log("WebServer is up and running on http://localhost:3000/");
+server.listen(config.server.port, function() {
+    console.log(`WebServer is up and running on http://localhost:${config.server.port}/`);
 });

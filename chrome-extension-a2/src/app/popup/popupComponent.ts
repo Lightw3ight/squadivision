@@ -45,7 +45,7 @@ export class PopupComponent {
 	}
 	
 	openVideoPage(){
-		chrome.tabs.create({ url: '/app/video/index.html' });
+		chrome.tabs.create({ url: 'index.html#/video' });
 	}
 	
 	broadcast(value, timeout: number, monitorId: string) {
