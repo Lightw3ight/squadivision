@@ -5,3 +5,4 @@ chrome-extension-a2/node_modules
 chrome-extension-a2/src/jspm_packages
 chrome-extension-a2/src/dist
 .idea/
+monitor-extension-a2/src/jspm_packages/

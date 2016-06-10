@@ -1,8 +1,7 @@
 {
-  "name": "client-extension-a2",
+  "name": "monitor-extension",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "lite": "lite-server",
     "bundle": "jspm bundle-sfx app/bootstrap.ts src/dist/bundle.js --minify",

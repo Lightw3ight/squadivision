@@ -1,0 +1,19 @@
+<div>
+	<div class="modal-header">
+		<h4 class="modal-title">Squadivision Monitor Config</h4> </div>
+	<div class="modal-body">
+		<form name="configForm" novalidate>
+			<div class="form-group" ng-class="{ 'has-error': configForm.serverUrl.$invalid && (configForm.$submitted || configForm.serverUrl.$dirty)}">
+				<label class="control-label">Server</label>
+				<input type="text" name="serverUrl" required ng-model="$ctrl.config.serverUrl" class="form-control">
+			</div>
+			<div class="form-group" ng-class="{ 'has-error': configForm.monitorName.$invalid && (configForm.$submitted || configForm.serverUrl.$dirty)}">
+				<label class="control-label">Monitor Name</label>
+				<input type="text" name="monitorName" required ng-model="$ctrl.config.monitorName" class="form-control">
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" ng-click="configForm.$submitted = true; configForm.$valid && $ctrl.saveConfig()" class="btn btn-primary">Save</button>
+	</div>
+</div>
