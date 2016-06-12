@@ -1,0 +1,35 @@
+<div>
+    <div class="modal-header">
+        <h4 class="modal-title">Squadivision Monitor Config</h4></div>
+    <div class="modal-body">
+        <form #configForm="ngForm">
+            <div class="form-group"
+                 [ngClass]="{ 'has-error': !(serverUrl.valid || serverUrl.pristine)}">
+                <label class="control-label">Server</label>
+                <input type="text"
+                       ngControl="serverUrl"
+                       #serverUrl="ngForm"
+                       [(ngModel)]="settings.serverUrl"
+                       class="form-control"
+                       required>
+            </div>
+            <div class="form-group"
+                 [ngClass]="{ 'has-error': !(monitorName.valid || monitorName.pristine)}">
+                <label class="control-label">Monitor Name</label>
+                <input type="text"
+                       ngControl="monitorName"
+                       #monitorName="ngForm"
+                       [(ngModel)]="settings.monitorName"
+                       class="form-control"
+                       required>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                (click)="configForm.valid && saveConfig()"
+                class="btn btn-primary">
+            Save
+        </button>
+    </div>
+</div>

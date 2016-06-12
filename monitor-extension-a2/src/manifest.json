@@ -1,32 +1,33 @@
 {
-	"manifest_version": 2,
-	"name": "Squadivision Monitor",
-	"description": "A monitor extension for squadivision",
-	"version": "0.1.0.0",
-	"browser_action": {
-		"default_icon": "icon.png",
-		"default_popup": "popup-app.html"
-	},
-	"background": {
-		"page": "background-app.html"
-	},
-	"content_scripts": [
-		{
-			"matches": [
-				"http://*/*"
-			],
-			"js": [
-				"content_script.js"
-			],
-			"run_at": "document_end"
-		}
-	],
-	"permissions": [
-		"activeTab",
-		"cookies",
-		"tabs",
-		"background",
-		"http://*/*",
-		"https://*/*"
-	]
+    "manifest_version": 2,
+    "name": "Squadivision Monitor",
+    "description": "A monitor extension for squadivision",
+    "version": "0.1.0.0",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "index.html#/config"
+    },
+    "background": {
+        "page": "index.html#/"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*"
+            ],
+            "js": [
+                "content_script.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "permissions": [
+        "activeTab",
+        "cookies",
+        "tabs",
+        "background",
+        "http://*/*",
+        "https://*/*"
+    ]
 }
