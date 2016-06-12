@@ -4,10 +4,10 @@ import {SettingsService} from '../services/settings.service'
 import {SocketService} from '../services/socket.service'
 
 @Component({
-    selector: 'popup-panel',
-    templateUrl: '/app/popup/popup.component.html'
+    selector: 'monitor-config',
+    templateUrl: '/app/config/config.component.html'
 })
-export class PopupComponent implements OnInit {
+export class ConfigComponent implements OnInit {
     private backgroundPort:any;
 
     public activeSettings: any;
