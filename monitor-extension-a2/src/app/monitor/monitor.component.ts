@@ -2,13 +2,14 @@ import {Component} from '@angular/core';
 
 import {SettingsService} from '../services/settings.service'
 import {SocketService} from '../services/socket.service'
+import {ISettings} from '../services/ISettings';
 
 @Component({
     selector: 'sv-monitor',
     templateUrl: './app/monitor/monitor.component.html'
 })
 export class MonitorComponent {
-    private config: any;
+    private config: ISettings;
     private timeout: number;
     private previousUrl : string;
 
@@ -16,7 +17,7 @@ export class MonitorComponent {
 
         this.config = settingsService.get() || {};
 
-        if ((<any>this.config).monitorName && (<any>this.config).serverUrl) {
+        if (this.config.monitorName && this.config.serverUrl) {
             this.connectToSocketServer();
         }
 

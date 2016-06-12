@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {SettingsService} from '../services/settings.service'
-import {SocketService} from '../services/socket.service'
+import {ISettings} from "../services/ISettings";
 
 @Component({
     selector: 'monitor-config',
@@ -10,10 +10,10 @@ import {SocketService} from '../services/socket.service'
 export class ConfigComponent implements OnInit {
     private backgroundPort:any;
 
-    public activeSettings: any;
-    public settings: any;
+    public activeSettings: ISettings;
+    public settings: ISettings;
 
-    constructor(private socketService:SocketService,
+    constructor(
                 private settingsService:SettingsService) {
     }
 
