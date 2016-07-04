@@ -4,7 +4,9 @@ import {HTTP_PROVIDERS} from '@angular/http';
 
 import {MonitorComponent} from './monitor/monitor.component';
 import {ConfigComponent} from './config/config.component';
-import {SettingsService} from './services/settings.service';
+import {VideoConferenceComponent} from './video/videoConferenceComponent';
+
+import {SettingsService} from './services/settingsService';
 import {SocketService} from './services/socket.service';
 
 @Component({
@@ -19,7 +21,8 @@ import {SocketService} from './services/socket.service';
 })
 @Routes([
     {path: '/', component: MonitorComponent},
-    {path: '/config', component: ConfigComponent}
+    {path: '/config', component: ConfigComponent},
+    {path: '/video', component: VideoConferenceComponent}
 ])
 export class AppComponent {
     constructor(private router: Router){

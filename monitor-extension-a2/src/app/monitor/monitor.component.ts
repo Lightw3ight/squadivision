@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 
-import {SettingsService} from '../services/settings.service'
+import {SettingsService} from '../services/settingsService'
 import {SocketService} from '../services/socket.service'
-import {ISettings} from '../services/ISettings';
+import {IAppSettings} from '../models/IAppSettings';
 
 @Component({
     selector: 'sv-monitor',
     templateUrl: './app/monitor/monitor.component.html'
 })
 export class MonitorComponent {
-    private config: ISettings;
+    private config: IAppSettings;
     private timeout: number;
     private previousUrl : string;
 
@@ -43,6 +43,7 @@ export class MonitorComponent {
         this.socketService.connect(this.config.serverUrl, { monitorId: `${this.config.monitorName}` });
         this.socketService.on('url', (data) => { this.onEventReceived(data); });
         this.socketService.on('scroll', (data) => { this.onScrollReceived(data); });
+        this.socketService.on('conference', (data) => { this.onConferenceReceived(data); });
     }
 
     onScrollReceived(data) {
@@ -73,6 +74,11 @@ export class MonitorComponent {
         } else {
             this.setNewUrl(data.url, data.cookies);
         }
+    }
+
+    onConferenceReceived(data) {
+        console.log('start conference message received');
+        this.setNewUrl('index.html#/video', []);
     }
 
     setNewUrl(url, cookies) {

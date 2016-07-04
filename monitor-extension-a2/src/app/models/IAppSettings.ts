@@ -1,4 +1,4 @@
-export interface ISettings {
+export interface IAppSettings {
     serverUrl:string;
     monitorName:string;
 }

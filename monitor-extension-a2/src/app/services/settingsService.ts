@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 
-import {ISettings} from './ISettings';
+import {IAppSettings} from '../models/IAppSettings';
 
 @Injectable()
 export class SettingsService {
     private key = 'squadivision-monitor-config';
 
-    public get(): ISettings {
-        return <ISettings>JSON.parse(localStorage.getItem(this.key));
+    public get(): IAppSettings {
+        return <IAppSettings>JSON.parse(localStorage.getItem(this.key));
     }
 
-    public save(settings) {
+    public save(settings: IAppSettings) {
         localStorage.setItem(this.key, JSON.stringify(settings))
     }
 }

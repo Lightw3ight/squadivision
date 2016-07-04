@@ -16,10 +16,10 @@ module.exports = function(io) {
 	function initialiseClient(socket) {
 		clients.push(socket);
 		console.log(`client connected`);
-		
+
 		socket.on('scroll', data =>{
 			var targetMonitor = monitors.find(m => m.request._query.monitorId == data.monitorId);
-			
+
 			if (targetMonitor){
 				//console.log(`sending ${data.url} to ${data.monitorId}`)
 				targetMonitor.emit('scroll', data);
@@ -33,12 +33,25 @@ module.exports = function(io) {
 				console.log(`sending ${data.url} to ${data.monitorId}`)
 				targetMonitor.emit('url', data);
 			}
-			
+
 			if (fn){
 				fn();
 			}
 		});
-		
+
+		socket.on('conference', (data, fn) => {
+			var targetMonitor = monitors.find(m => m.request._query.monitorId == data.monitorId);
+			//console.log(monitors[0].request._query.monitorId);
+			if (targetMonitor){
+				console.log(`sending conference request to ${data.monitorId}`)
+				targetMonitor.emit('conference', data);
+			}
+
+			if (fn){
+				fn();
+			}
+		});
+
 		socket.on('get-monitors', () =>{
 			socket.emit('monitor-list', monitors.map(m => m.request._query.monitorId));
 			return monitors.map(m => m.request._query.monitorId)

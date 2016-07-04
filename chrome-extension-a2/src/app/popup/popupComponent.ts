@@ -31,10 +31,10 @@ export class PopupComponent {
 	 config: IAppSettings;
 	 selectedMonitor: string;
 	 timeout: number;
-	
+
 	constructor(private _socketService: SocketService, private _settingsService: SettingsService, private _router: Router) {
 	}
-	
+
 	ngOnInit(){
 		this.config = this._settingsService.get() || {};
 		if (this.config.serverUrl) {
@@ -43,11 +43,13 @@ export class PopupComponent {
 			this._router.navigate(['/config']);
 		}
 	}
-	
+
 	openVideoPage(){
+		this._socketService.emit('conference', { monitorId: this.selectedMonitor }, (a, b, c) => {
+		});
 		chrome.tabs.create({ url: 'index.html#/video' });
 	}
-	
+
 	broadcast(value, timeout: number, monitorId: string) {
 		timeout = timeout || (value.type === 'giphy' ? 15 : null);
 		this.sendToMonitor(value.url, monitorId, timeout);

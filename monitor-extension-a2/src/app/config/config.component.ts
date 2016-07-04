@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {SettingsService} from '../services/settings.service'
-import {ISettings} from "../services/ISettings";
+import {SettingsService} from '../services/settingsService'
+import {IAppSettings} from "../models/IAppSettings";
 
 @Component({
     selector: 'monitor-config',
@@ -10,8 +10,8 @@ import {ISettings} from "../services/ISettings";
 export class ConfigComponent implements OnInit {
     private backgroundPort:any;
 
-    public activeSettings: ISettings;
-    public settings: ISettings;
+    public activeSettings: IAppSettings;
+    public settings: IAppSettings;
 
     constructor(
                 private settingsService:SettingsService) {
